@@ -14,7 +14,7 @@ import { InfoTypes } from "./interfaces/InfoTypes";
 axios.defaults.adapter = require('axios/lib/adapters/http');
 
 export default class YoutubeMusicApi {
-    
+
     // fields
     client:AxiosInstance;
     cookies:any;
@@ -93,23 +93,26 @@ export default class YoutubeMusicApi {
         }, this.client.defaults.headers)
 
         return new Promise(async (resolve, reject) => {
-            let input = qs.stringify(Object.assign({
-                alt:'json',
-                key:this.ytcfg.INNERTUBE_API_KEY
-            }, inputQuery));
+            try {
+                let input = qs.stringify(Object.assign({
+                    alt:'json',
+                    key:this.ytcfg.INNERTUBE_API_KEY
+                }, inputQuery));
 
-            let result = await this.client.post(
-                `youtubei/${this.ytcfg.INNERTUBE_API_VERSION}/${endpointName}?${input}`, 
-                Object.assign(inputVariables, createApiContext(this.ytcfg)), {
-                    responseType: 'json',
-                    headers: headers
-                }
-            );
+                let result = await this.client.post(
+                    `youtubei/${this.ytcfg.INNERTUBE_API_VERSION}/${endpointName}?${input}`, 
+                    Object.assign(inputVariables, createApiContext(this.ytcfg)), {
+                        responseType: 'json',
+                        headers: headers
+                    }
+                );
 
                 if (result.data.hasOwnProperty('responseContext')) {
                     resolve(result.data)
                 }
-                    
+            } catch (err) {
+                reject(err)
+            }
         });
     }
 
