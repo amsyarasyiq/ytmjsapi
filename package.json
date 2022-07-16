@@ -1,16 +1,18 @@
 {
-  "name": "ytmapi",
+  "name": "ytmjsapi",
   "version": "1.0.0",
   "description": "Unofficial Youtube Music API",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/slyde99/ytmapi.git"
+    "url": "git+https://github.com/slyde99/ytmjsapi.git"
   },
   "author": "slyde99",
   "license": "MIT",
-  "files": ["/dist"],
+  "files": [
+    "/dist"
+  ],
   "devDependencies": {
     "@types/jest": "^28.1.6",
     "@types/node": "^14.11.2",
