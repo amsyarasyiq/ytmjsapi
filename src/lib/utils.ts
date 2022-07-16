@@ -41,27 +41,27 @@ export const createApiContext = (ytcfg: any) => {
                 enableSafetyMode: false,
             },
         }
-    }
-}
+    };
+};
 
 export const getCategoryURI = (categoryName?: string): string | null => {
     let b64Key = '';
     switch (categoryName?.toUpperCase()) {
         case 'SONG':
-            b64Key = 'RAAGAAgACgA'
-            break
-        case 'VIDEO':
-            b64Key = 'BABGAAgACgA'
-            break
+            b64Key = 'RAAGAAgACgA';
+            break;
+        case 'VIDEO':;
+            b64Key = 'BABGAAgACgA';
+            break;
         case 'ALBUM':
-            b64Key = 'BAAGAEgACgA'
-            break
+            b64Key = 'BAAGAEgACgA';
+            break;
         case 'ARTIST':
-            b64Key = 'BAAGAAgASgA'
-            break
+            b64Key = 'BAAGAAgASgA';
+            break;
         case 'PLAYLIST':
-            b64Key = 'BAAGAAgACgB'
-            break
+            b64Key = 'BAAGAAgACgB';
+            break;
     }
 
     if (b64Key.length > 0) {
@@ -69,39 +69,39 @@ export const getCategoryURI = (categoryName?: string): string | null => {
     } else {
         return null;
     }
-}
+};
 
 export const fv = (input: object, query: string, justOne = false): any => {
     const iterate: any = (x: any, y: string) => {
-        var r = []
+        var r = [];
 
         x?.hasOwnProperty(y) && r.push(x[y]);
         if (justOne && x.hasOwnProperty(y)) {
-            return r.shift()
+            return r.shift();
         }
 
         if (Array.isArray(x)) {
             for (let i = 0; i < x.length; i++) {
-                r = r.concat(iterate(x[i], y))
+                r = r.concat(iterate(x[i], y));
             }
         } else if (typeof x === 'object') {
-            const c = Object.keys(x)
+            const c = Object.keys(x);
             if (c.length > 0) {
                 for (let i = 0; i < c.length; i++) {
-                    r = r.concat(iterate(x[c[i]], y))
+                    r = r.concat(iterate(x[c[i]], y));
                 }
             }
         }
-        return r.length == 1 ? r.shift() : r
-    }
+        return r.length == 1 ? r.shift() : r;
+    };
 
     let d = query.split(':'),
-        v = input
+        v = input;
     for (let i = 0; i < d.length; i++) {
-        v = iterate(v, d[i])
+        v = iterate(v, d[i]);
     }
     return v;
-}
+};
 
 export const splitArray = (arr: any[], sprtr: (element: any) => boolean): any[] => {
     let h: any[] = [], 
@@ -117,35 +117,35 @@ export const splitArray = (arr: any[], sprtr: (element: any) => boolean): any[] 
     });
 
     if (newArr.length !== 0) {
-        h.push(newArr)
+        h.push(newArr);
     }
 
     return h;
 }
-
+;
 export const hms2s = (v: string): number => {
     try {
         let p = v.split(':'),
             s = 0,
-            f = 1
+            f = 1;
         while (p.length > 0) {
-            s += f * parseInt(p.pop()!, 10)
-            f *= 60
+            s += f * parseInt(p.pop()!, 10);
+            f *= 60;
         }
-        return s
+        return s;
     } catch (e) {
-        return 0
+        return 0;
     }
-}
+};
 
 export const toAuthorData = (data: any, album?: boolean): AuthorData => {
     const serialize = (x: any): AuthorData => {
         return {
             name: x.text,
             browseId: x.navigationEndpoint?.browseEndpoint?.browseId
-        }
-    }
+        };
+    };
 
     let a = data[album ? 2 : 1].filter((e: never, i: number) => i % 2 === 0).map((x: any) => serialize(x));
     return a.length == 1 ? a[0] : a;
-}
+};

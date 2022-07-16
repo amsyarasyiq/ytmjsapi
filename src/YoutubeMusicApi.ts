@@ -1,5 +1,5 @@
 
-const tough = require('tough-cookie')
+const tough = require('tough-cookie');
 
 // const utils = require('./utils')
 // const parsers = require('./parsers')
@@ -7,7 +7,7 @@ const tough = require('tough-cookie')
 import { AxiosInstance, AxiosRequestConfig, default as axios } from "axios";
 import * as qs from "querystring";
 import { createApiContext, getCategoryURI } from "./lib/utils";
-import * as parsers from "./lib/parseSearchResult"
+import * as parsers from "./lib/parseSearchResult";
 import { AlbumInfo, ArtistInfo, GeneralInfo, PlaylistInfo, SongInfo, VideoInfo } from "./interfaces/ResultTypes";
 import { InfoTypes } from "./interfaces/InfoTypes";
 
@@ -21,8 +21,8 @@ export default class YoutubeMusicApi {
     ytcfg:any;
 
     constructor() {
-        this.ytcfg = {}
-        this.cookies = new tough.CookieJar()
+        this.ytcfg = {};
+        this.cookies = new tough.CookieJar();
 
         this.client = axios.create({
             baseURL: 'https://music.youtube.com/',
@@ -37,27 +37,27 @@ export default class YoutubeMusicApi {
         });
 
         this.client.interceptors.request.use((req: AxiosRequestConfig<any> | any) => {
-            const cookies = this.cookies.getCookieStringSync(req!.baseURL)
+            const cookies = this.cookies.getCookieStringSync(req!.baseURL);
             if (cookies && cookies.length > 0) {
                 req.headers['Cookie'] = cookies;
             }
             return req;
         }, (err: Error) => {
-            return Promise.reject(err)
+            return Promise.reject(err);
         });
 
         this.client.interceptors.response.use((res: any) => {
             if (res.headers.hasOwnProperty('set-cookie')) {
                 if (Array.isArray(res.headers['set-cookie'])) {
                     res.headers['set-cookie'].map(value => {
-                        this.cookies.setCookieSync(tough.Cookie.parse(value), res.config.baseURL)
-                    })
+                        this.cookies.setCookieSync(tough.Cookie.parse(value), res.config.baseURL);
+                    });
                 } else {
-                    this.cookies.setCookieSync(tough.Cookie.parse(res.headers['set-cookie']), res.config.baseURL)
+                    this.cookies.setCookieSync(tough.Cookie.parse(res.headers['set-cookie']), res.config.baseURL);
                 }
             }
-            return res
-        })
+            return res;
+        });
     }
     
     static async create(cookie?: any): Promise<YoutubeMusicApi> {
@@ -90,7 +90,7 @@ export default class YoutubeMusicApi {
             'X-YouTube-Page-Label': this.ytcfg.PAGE_BUILD_LABEL,
             'X-YouTube-Utc-Offset': String(-new Date().getTimezoneOffset()),
             'X-YouTube-Time-Zone': new Intl.DateTimeFormat().resolvedOptions().timeZone
-        }, this.client.defaults.headers)
+        }, this.client.defaults.headers);
 
         return new Promise(async (resolve, reject) => {
             try {
@@ -108,10 +108,10 @@ export default class YoutubeMusicApi {
                 );
 
                 if (result.data.hasOwnProperty('responseContext')) {
-                    resolve(result.data)
+                    resolve(result.data);
                 }
             } catch (err) {
-                reject(err)
+                reject(err);
             }
         });
     }

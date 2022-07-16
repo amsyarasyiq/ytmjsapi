@@ -1,4 +1,4 @@
-import { InfoTypes } from "./InfoTypes"
+import { InfoTypes } from "./InfoTypes";
 
 export interface GeneralInfo {
     type: InfoTypes,

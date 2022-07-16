@@ -1,3 +1,3 @@
-import YoutubeMusicApi from "./YoutubeMusicApi"
+import YoutubeMusicApi from "./YoutubeMusicApi";
 
 export default YoutubeMusicApi;

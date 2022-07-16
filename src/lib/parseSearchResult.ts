@@ -1,6 +1,6 @@
-import * as utils from './utils'
-import * as ResultTypes from '../interfaces/ResultTypes'
-import { InfoTypes } from "../interfaces/InfoTypes"
+import * as utils from './utils';
+import * as ResultTypes from '../interfaces/ResultTypes';
+import { InfoTypes } from "../interfaces/InfoTypes";
 
 export const parseSearchResult = (context: any, parseType?: InfoTypes): ResultTypes.GeneralInfo[] => {
     const content: ResultTypes.GeneralInfo[] = [];
@@ -33,7 +33,7 @@ export const parseSearchResult = (context: any, parseType?: InfoTypes): ResultTy
                     duration: utils.hms2s(navText[3][0].text),
                     thumbnails: utils.fv(sectionContext, 'musicThumbnailRenderer:thumbnails'),
                     params: utils.fv(sectionContext, 'playNavigationEndpoint:params')
-                }
+                };
                 content.push(Object.freeze(data));
                 break;
             }
@@ -48,7 +48,7 @@ export const parseSearchResult = (context: any, parseType?: InfoTypes): ResultTy
                     duration: utils.hms2s(navText[3][0].text),
                     thumbnails: utils.fv(sectionContext, 'musicThumbnailRenderer:thumbnails'),
                     params: utils.fv(sectionContext, 'playNavigationEndpoint:params'),
-                }
+                };
                 content.push(Object.freeze(data));
                 break;
             }
@@ -58,7 +58,7 @@ export const parseSearchResult = (context: any, parseType?: InfoTypes): ResultTy
                     browseId: utils.fv(sectionContext.navigationEndpoint, 'browseEndpoint:browseId'),
                     name: utils.fv(flexColumn?.[0], 'runs:text'),
                     thumbnails: utils.fv(sectionContext, 'musicThumbnailRenderer:thumbnails')
-                }
+                };
                 content.push(Object.freeze(data));
                 break;
             }
@@ -73,9 +73,9 @@ export const parseSearchResult = (context: any, parseType?: InfoTypes): ResultTy
                     artists: utils.toAuthorData(navText),
                     year: utils.fv(flexColumn?.[1], 'runs:text')?.[4],
                     thumbnails: utils.fv(sectionContext, 'musicThumbnailRenderer:thumbnails')
-                }
-                content.push(Object.freeze(data))
-                break
+                };
+                content.push(Object.freeze(data));
+                break;
             }
             case InfoTypes.Playlist: {
                 let data: ResultTypes.PlaylistInfo = {
@@ -87,13 +87,13 @@ export const parseSearchResult = (context: any, parseType?: InfoTypes): ResultTy
                     author: utils.toAuthorData(navText),
                     count: parseInt(navText[2][0].text.split(' ').shift()),
                     thumbnails: utils.fv(sectionContext, 'musicThumbnailRenderer:thumbnails')
-                }
+                };
                 content.push(Object.freeze(data));
                 break;
             }
             default:
                 break;
         }
-    })
+    });
     return content;
-}
+};
