@@ -1,17 +1,14 @@
 {
-  "ts-node": {
-    "compilerOptions": {
-      "module": "commonjs",
-      "outDir": "./out"
-    }
-  },
   "compilerOptions": {
+    "target": "ES5",
     "module": "commonjs",
-    "declaration": true,
-    "strict": true,
+    "esModuleInterop": true,
+    "moduleResolution": "node",
     "resolveJsonModule": true,
-    "moduleResolution": "node"
+    "declaration": true,
+    "outDir": "./out",
+    "strict": true
   },
-  "include": ["src"],
+  "include": ["src/**/*"],
   "exclude": ["node_modules", "**/__tests__/*"]
 }

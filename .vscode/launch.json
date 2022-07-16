@@ -1,21 +1,18 @@
 {
-    // Use IntelliSense to learn about possible attributes.
-    // Hover to view descriptions of existing attributes.
-    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
-    "version": "0.2.0",
-    "configurations": [
-        {
-          "name": "Launch TypeScript",
+  "version": "0.2.0",
+  "configurations": [
+      {
           "type": "node",
           "request": "launch",
-          "runtimeArgs": ["--nolazy", "-r", "ts-node/register"],
-          "args": ["./src/index.ts", "--transpile-only"],
-          "cwd": "${workspaceFolder}",
+          "name": "Build Project",
+          "program": "${workspaceFolder}\\out\\index.js",
+          "preLaunchTask": "npm: build",
+          "sourceMaps": true,
+          "smartStep": true,
           "internalConsoleOptions": "openOnSessionStart",
-          "skipFiles": ["<node_internals>/**", "node_modules/**"],
-          "env": {
-            "TS_NODE_PROJECT": "${workspaceFolder}/tsconfig.json"
-          }
-        }
-    ]
+          "outFiles": [
+              "${workspaceFolder}/out/**/*.js"
+          ]
+      }
+  ]
 }

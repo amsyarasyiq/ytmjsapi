@@ -1,3 +1,4 @@
 build/
 manualtests/
 node_modules/
+out/
