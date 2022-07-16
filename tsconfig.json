@@ -1,0 +1,17 @@
+{
+  "ts-node": {
+    "compilerOptions": {
+      "module": "commonjs",
+      "outDir": "./out"
+    }
+  },
+  "compilerOptions": {
+    "module": "commonjs",
+    "declaration": true,
+    "strict": true,
+    "resolveJsonModule": true,
+    "moduleResolution": "node"
+  },
+  "include": ["src"],
+  "exclude": ["node_modules", "**/__tests__/*"]
+}
